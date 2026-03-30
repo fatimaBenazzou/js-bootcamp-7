@@ -1,0 +1,28 @@
+header {
+  padding: 3rem 0;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 3rem;
+}
+
+.navigation {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0 20px;
+  margin-right: auto;
+}
+
+.navigation > li {
+  font-size: 1.25rem;
+  font-weight: 400;
+  transition: color 300ms ease-in;
+}
+
+.navigation > li:hover,
+.navigation > li.active {
+  color: var(--primary-color);
+}

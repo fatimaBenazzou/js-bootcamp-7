@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flexbox Challenge — Wavely</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="start.css" />
+  </head>
+  <body>
+    <!-- =============================================
+         PART 1 — Top navigation bar
+    ============================================= -->
+    <header>
+      <nav class="navbar">
+        <div class="navbar__brand">
+          <span class="navbar__logo">◈</span>
+          <span class="navbar__name">Wavely</span>
+        </div>
+        <ul class="navbar__links">
+          <li><a href="#" class="navbar__link active">Discover</a></li>
+          <li><a href="#" class="navbar__link">Library</a></li>
+          <li><a href="#" class="navbar__link">Artists</a></li>
+          <li><a href="#" class="navbar__link">Radio</a></li>
+        </ul>
+        <div class="navbar__actions">
+          <button class="btn-icon">♡</button>
+          <button class="btn-icon">↑</button>
+          <div class="avatar">JD</div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- =============================================
+         PART 2 — Page layout: sidebar + content
+    ============================================= -->
+    <main class="layout">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <p class="sidebar__label">Your playlists</p>
+        <ul class="sidebar__list">
+          <li class="sidebar__item active">
+            <span class="sidebar__icon">▶</span>
+            Morning Focus
+          </li>
+          <li class="sidebar__item">
+            <span class="sidebar__icon">♪</span>
+            Late Night Coding
+          </li>
+          <li class="sidebar__item">
+            <span class="sidebar__icon">✦</span>
+            Workout Mix
+          </li>
+          <li class="sidebar__item">
+            <span class="sidebar__icon">◎</span>
+            Chill Sunday
+          </li>
+          <li class="sidebar__item">
+            <span class="sidebar__icon">◈</span>
+            Favourites
+          </li>
+        </ul>
+
+        <p class="sidebar__label">Browse</p>
+        <ul class="sidebar__list">
+          <li class="sidebar__item">
+            <span class="sidebar__icon">◉</span>
+            New Releases
+          </li>
+          <li class="sidebar__item">
+            <span class="sidebar__icon">◐</span>
+            Charts
+          </li>
+          <li class="sidebar__item">
+            <span class="sidebar__icon">◑</span>
+            Genres
+          </li>
+        </ul>
+      </aside>
+
+      <!-- Main content -->
+      <section class="content">
+        <!-- PART 3 — Section header -->
+        <section class="section-header">
+          <div class="section-header__text">
+            <h1 class="section-header__title">Morning Focus</h1>
+            <p class="section-header__meta">
+              32 tracks · 2h 14min · Updated 3 days ago
+            </p>
+          </div>
+          <div class="section-header__actions">
+            <button class="btn-play">▶ Play all</button>
+            <button class="btn-secondary">⤢ Share</button>
+            <button class="btn-secondary">⊕ Follow</button>
+          </div>
+        </section>
+
+        <!-- PART 4 — Featured cards row -->
+        <section class="featured-row">
+          <div class="featured-card featured-card--active">
+            <div class="featured-card__art">
+              <span>◈</span>
+              <div class="featured-card__playing">
+                <span></span><span></span><span></span><span></span>
+              </div>
+            </div>
+            <p class="featured-card__title">Now Playing</p>
+            <p class="featured-card__name">Interstellar Drift</p>
+            <p class="featured-card__artist">Neon Parallax</p>
+          </div>
+          <div class="featured-card">
+            <div class="featured-card__art"><span>♪</span></div>
+            <p class="featured-card__title">Up Next</p>
+            <p class="featured-card__name">Quiet Hours</p>
+            <p class="featured-card__artist">The Slow Echo</p>
+          </div>
+          <div class="featured-card">
+            <div class="featured-card__art"><span>✦</span></div>
+            <p class="featured-card__title">Trending</p>
+            <p class="featured-card__name">Glass Patterns</p>
+            <p class="featured-card__artist">Volta Circuit</p>
+          </div>
+          <div class="featured-card">
+            <div class="featured-card__art"><span>◎</span></div>
+            <p class="featured-card__title">Editor's Pick</p>
+            <p class="featured-card__name">Soft Return</p>
+            <p class="featured-card__artist">Mira Vale</p>
+          </div>
+        </section>
+
+        <!-- PART 5 — Track list -->
+        <section class="tracklist">
+          <div class="tracklist__header">
+            <span class="col-num">#</span>
+            <span class="col-title">Title</span>
+            <span class="col-album">Album</span>
+            <span class="col-tags">Tags</span>
+            <span class="col-duration">⏱</span>
+          </div>
+
+          <div class="track track--playing">
+            <span class="col-num track__num">▶</span>
+            <div class="col-title track__info">
+              <span class="track__name">Interstellar Drift</span>
+              <span class="track__artist">Neon Parallax</span>
+            </div>
+            <span class="col-album track__album">Outer Signals</span>
+            <div class="col-tags track__tags">
+              <span class="tag">ambient</span>
+              <span class="tag">focus</span>
+            </div>
+            <span class="col-duration track__duration">4:32</span>
+          </div>
+
+          <div class="track">
+            <span class="col-num track__num">2</span>
+            <div class="col-title track__info">
+              <span class="track__name">Quiet Hours</span>
+              <span class="track__artist">The Slow Echo</span>
+            </div>
+            <span class="col-album track__album">Still Life</span>
+            <div class="col-tags track__tags">
+              <span class="tag">lo-fi</span>
+              <span class="tag">chill</span>
+            </div>
+            <span class="col-duration track__duration">3:58</span>
+          </div>
+
+          <div class="track">
+            <span class="col-num track__num">3</span>
+            <div class="col-title track__info">
+              <span class="track__name">Glass Patterns</span>
+              <span class="track__artist">Volta Circuit</span>
+            </div>
+            <span class="col-album track__album">Frequency</span>
+            <div class="col-tags track__tags">
+              <span class="tag">electronic</span>
+            </div>
+            <span class="col-duration track__duration">5:11</span>
+          </div>
+
+          <div class="track">
+            <span class="col-num track__num">4</span>
+            <div class="col-title track__info">
+              <span class="track__name">Soft Return</span>
+              <span class="track__artist">Mira Vale</span>
+            </div>
+            <span class="col-album track__album">Tender Noise</span>
+            <div class="col-tags track__tags">
+              <span class="tag">indie</span>
+              <span class="tag">vocal</span>
+            </div>
+            <span class="col-duration track__duration">3:44</span>
+          </div>
+
+          <div class="track">
+            <span class="col-num track__num">5</span>
+            <div class="col-title track__info">
+              <span class="track__name">Depth Charge</span>
+              <span class="track__artist">Hollow Sun</span>
+            </div>
+            <span class="col-album track__album">Submerged</span>
+            <div class="col-tags track__tags">
+              <span class="tag">bass</span>
+              <span class="tag">dark</span>
+            </div>
+            <span class="col-duration track__duration">6:02</span>
+          </div>
+
+          <div class="track">
+            <span class="col-num track__num">6</span>
+            <div class="col-title track__info">
+              <span class="track__name">First Light</span>
+              <span class="track__artist">Aurore</span>
+            </div>
+            <span class="col-album track__album">Horizon</span>
+            <div class="col-tags track__tags">
+              <span class="tag">ambient</span>
+            </div>
+            <span class="col-duration track__duration">4:19</span>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <!-- =============================================
+         PART 6 — Player bar (bottom)
+    ============================================= -->
+    <footer class="player">
+      <div class="player__track">
+        <div class="player__art">◈</div>
+        <div class="player__info">
+          <span class="player__name">Interstellar Drift</span>
+          <span class="player__artist">Neon Parallax</span>
+        </div>
+        <button class="btn-icon player__like">♡</button>
+      </div>
+
+      <div class="player__controls">
+        <button class="btn-icon">⇄</button>
+        <button class="btn-icon">⏮</button>
+        <button class="btn-play-main">▶</button>
+        <button class="btn-icon">⏭</button>
+        <button class="btn-icon">↻</button>
+        <div class="player__progress">
+          <span class="player__time">1:47</span>
+          <div class="progress-bar">
+            <div class="progress-bar__fill"></div>
+          </div>
+          <span class="player__time">4:32</span>
+        </div>
+      </div>
+
+      <div class="player__volume">
+        <button class="btn-icon">♪</button>
+        <div class="volume-bar">
+          <div class="volume-bar__fill"></div>
+        </div>
+        <button class="btn-icon">⊞</button>
+      </div>
+    </footer>
+  </body>
+</html>

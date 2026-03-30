@@ -1,0 +1,402 @@
+/* =============================================================
+   LEVEL 1 — Page-wide base styles
+   ============================================================= */
+
+/* 1. The body should have a light blue background (#e8f4f8),
+      use Arial as its font (with sans-serif as fallback),
+      a base font size of 16px, and a line-height of 1.6.
+      Also remove any default spacing around the page edges. */
+body {
+  background-color: #e8f4f8;
+  font-family: "Arial", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  padding: 0;
+  margin: 0;
+}
+
+/* 2. The <main> element should never be wider than 900px
+      and should always be centered on the page.
+      Also add some breathing room above and below it (20px). */
+main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px 0;
+}
+
+/* 3. There are two <p> elements that sit directly inside <main>,
+      not inside any section. Target ONLY those.
+      Make them italic, colored #4a148c, with a little space below (12px).
+      💡 There is a CSS combinator specifically for "direct child" relationships. */
+main > p {
+  font-style: italic;
+  color: #4a148c;
+  margin-bottom: 12px;
+}
+/* 4. Now target ONLY the paragraph with the class .highlight
+      (which is also a direct child of main).
+      Give it a yellow background (#fff9c4), some padding (8px),
+      slightly rounded corners (4px), and bold text. */
+main > .highlight {
+  background-color: #fff9c4;
+  padding: 8px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+/* =============================================================
+   LEVEL 2 — Header & footer
+   ============================================================= */
+
+/* 5. The header should stand out: dark teal background (#006064),
+      white text, centered content, padding (30px top/bottom, 20px sides).
+      Round ONLY the two bottom corners (16px),
+      and push the content below it away (30px). */
+header,
+footer {
+  background-color: #006064;
+  color: white;
+  text-align: center;
+  padding: 30px 20px;
+  border-radius: 0 0 16px 16px;
+  margin-bottom: 30px;
+}
+
+/* 6. The .tagline paragraph inside the header is a subtitle.
+      Make it slightly smaller (1rem), a light cyan color (#b2ebf2),
+      and italic. */
+header .tagline {
+  font-size: 1rem;
+  color: cyan;
+  font-style: italic;
+}
+/* 7. When someone hovers over the <h1>, it should turn yellow (#ffeb3b)
+      and grow to 2.5em — but smoothly, not instantly.
+      Add a 0.3s transition on both the color and the size.
+      💡 The transition must be declared on the element itself,
+         not on the :hover rule — otherwise the animation only plays
+         in one direction. */
+h1 {
+  transition:
+    color 0.7s ease-in,
+    font-size 0.7s ease-out;
+}
+
+h1:hover {
+  color: #ffeb3b;
+  font-size: 2.5rem;
+}
+
+/* 8. The footer mirrors the header: same dark teal (#006064),
+      white text, centered, padding (20px).
+      This time round only the TOP two corners (16px).
+      Push it away from the content above with a 50px top margin. */
+footer {
+  border-radius: 16px 16px 0 0;
+  margin-top: 50px;
+  margin-bottom: 0;
+}
+
+/* 9. Inside the footer, .footer-tip should be slightly smaller (0.95em).
+      The .footer-copy paragraph should be even smaller (0.8em)
+      and muted cyan (#b2ebf2). */
+.footer-tip {
+  font-size: 0.95rem;
+}
+
+.footer-copy {
+  font-size: 0.8rem;
+  color: cyan;
+}
+/* =============================================================
+   LEVEL 3 — Classes, IDs and descendant selectors
+   ============================================================= */
+
+/* 10. The .intro section should have a soft pink background (#fce4ec),
+       internal spacing (20px), rounded corners (10px),
+       and a margin below it (25px). */
+.intro {
+}
+
+/* 11. Every <p> inside .intro should have a small space below it (10px).
+       This rule should apply no matter how deep the paragraph is nested. */
+
+/* 12. The paragraph with class .hello has a white background,
+       bold text, padding (6px top/bottom, 10px sides),
+       and slightly rounded corners (4px). */
+
+/* 13. The element with id "special" should have a solid indigo border
+       (2px, color #3f51b5), dark blue text (#1a237e),
+       padding (8px), and rounded corners (4px).
+       💡 IDs are targeted differently from classes — they use a different symbol. */
+
+/* 14. The <em> tag appears in several places, but style it ONLY
+       when it is inside .intro. Give it a deep pink color (#d81b60).
+       (It's already italic by default, no need to repeat that.) */
+
+/* 15. Same idea: target <strong> ONLY when it is inside .intro.
+       Color it dark red (#b71c1c). */
+
+/* 16. The <blockquote> inside .intro should look like a pull quote:
+       a pink left border (4px solid #f06292),
+       very light pink background (#fff0f5),
+       padding (12px top/bottom, 20px sides),
+       vertical margins (15px), italic text, dark pink color (#880e4f). */
+
+/* =============================================================
+   LEVEL 4 — Pseudo-classes: interaction states
+   ============================================================= */
+
+/* 17. The .checklist section should have a dashed purple border
+       (2px, #8e24aa), padding (15px), rounded corners (8px),
+       and a top margin of 25px. */
+.checklist {
+}
+
+/* 18. When a user hovers over any list item inside .checklist,
+       give it a light purple background (#f3e5f5) and shift
+       its content slightly to the right (10px extra left padding).
+       Both changes should animate smoothly over 0.2s. */
+
+/* 19. Some checkboxes are checked, some are not. Target ONLY the
+       checked ones and add a left margin of 20px to them.
+       💡 There is a pseudo-class that reflects whether a checkbox is checked.
+          You can also narrow the target using an attribute selector for the type. */
+
+/* 20. Target ONLY the unchecked checkboxes and make them appear
+       faded (opacity 0.5) to signal they are incomplete.
+       💡 Combine your answer from rule 19 with :not(). */
+
+/* =============================================================
+   LEVEL 5 — Pseudo-classes: structural selectors
+   ============================================================= */
+
+/* 21. Each blog post should have a different background color
+       depending on its position in the list:
+       1st → #e3f2fd  /  2nd → #fff8e1  /  3rd → #f1f8e9  /  4th → #fce4ec
+       💡 There is a pseudo-class that lets you target an element by its position
+          among siblings of the same type. */
+
+/* 22. All articles in .blog should share a base style:
+       padding (16px), space below (16px), rounded corners (10px),
+       and a subtle shadow (0 2px 8px rgba(0,0,0,0.08)). */
+.blog article {
+}
+
+/* 23. The article with class .featured should additionally have
+       a gold border (2px solid #fbc02d) and slightly more padding (20px). */
+
+/* 24. All h3 headings inside .blog should be 1.3em and dark blue (#1a237e). */
+
+/* 25. The .post-meta paragraphs should be small (0.82em),
+       gray (#888), with a little space below them (8px). */
+
+/* 26. Inside each article, there are two <p> elements: .post-meta first,
+       then the description. Target ONLY the description paragraph
+       and give it a comfortable line-height (1.7).
+       💡 :nth-of-type() lets you pick a specific occurrence — count carefully. */
+
+/* 27. The last <li> in any list inside .checklist or .links
+       should be bold.
+       💡 :last-child targets the last sibling element. */
+
+/* =============================================================
+   LEVEL 6 — Pseudo-elements
+   ============================================================= */
+
+/* 28. On the element with id "special", make the very first letter
+       stand out: 220% size, color #1565c0, bold.
+       with a small right margin (4px) — a classic drop-cap effect.
+       💡 There is a pseudo-element that targets only the first letter
+          of a text element. */
+
+/* 29. Without touching the HTML, insert the text "→ " before every
+       <li> inside .checklist. Color it purple (#8e24aa) and make it bold.
+       💡 ::before lets you inject content before an element via CSS. */
+
+/* 30. The .read-more links should have no underline, blue color (#0288d1),
+       and bold text. After the link text, display a " →" arrow automatically.
+       When hovered, change the arrow to " ↗" and the color to #1565c0.
+       💡 You will need ::after for the arrow, and :hover combined with
+          ::after to change it on hover. */
+
+/* 31. The placeholder text inside all inputs and the textarea
+       should appear light gray (#aaa) and italic.
+       💡 There is a pseudo-element specifically for styling placeholder text. */
+
+/* 32. When a user selects/highlights any text on the page,
+       show a purple highlight (#b39ddb) with white text.
+       💡 ::selection lets you control the browser's text selection color. */
+
+/* =============================================================
+   LEVEL 7 — Forms
+   ============================================================= */
+
+/* 33. Make every direct child of <form> stack vertically
+       with a margin below it (12px).
+       💡 The > combinator with * targets all direct children at once. */
+form > * {
+}
+
+/* 34. All text inputs, the select, and the textarea should look consistent:
+       full width, padding (9px top/bottom, 12px sides), a light gray border
+       (1px solid #ccc), rounded corners (5px), font size 1rem.
+       ⚠ Inputs don't inherit font-family from the body by default —
+         force them to match the page font. */
+
+/* 35. When a user clicks into any input, select, or textarea,
+       give clear visual feedback: remove the default browser outline,
+       change the border to purple (#6a1b9a), and add a soft purple
+       glow around it (box-shadow: 0 0 0 3px rgba(106,27,154,0.15)). */
+
+/* 36. All labels should be uppercase, bold, slightly smaller (0.9rem),
+       with generous letter spacing (0.05em) and dark color (#333). */
+
+/* 37. Target ONLY the number input (Age field) and remove its default
+       browser spin arrows. Look up the "appearance" property.
+       💡 Use an attribute selector to target only input[type="number"].
+          You will need vendor-prefixed versions: -webkit- and -moz-. */
+
+/* 38. When the URL input contains a valid address, reward the user
+       with a green border (#2e7d32) and a soft green glow.
+       When it is invalid, show a red border (#c62828).
+       💡 :valid and :invalid are pseudo-classes that react to HTML5 validation.
+          Note: an empty non-required field counts as valid — that is expected. */
+
+/* 39. The submit button should feel solid and prominent:
+       teal background (#00796b), white text, no border,
+       padding (11px top/bottom, 24px sides), rounded corners (5px),
+       pointer cursor, 1rem size, bold text. */
+.btn-submit {
+}
+
+/* 40. On hover, the submit button should darken to #004d40,
+       with a smooth 0.2s transition on the background color. */
+
+/* 41. The reset button should look secondary and understated:
+       transparent background, gray text (#555),
+       a light gray border (1px solid #ccc),
+       same padding and font size as the submit button. */
+.btn-reset {
+}
+
+/* 42. On hover, the reset button's border should darken to #888
+       and its text should shift to near-black (#222). */
+
+/* 43. The .form-actions div contains both buttons.
+       Place them side by side, push them to the RIGHT of the form,
+       with a 10px gap between them.
+       💡 Think about which display value enables gap and alignment control. */
+.form-actions {
+}
+
+/* =============================================================
+   LEVEL 8 — Tables
+   ============================================================= */
+
+/* 44. The table inside .data-table should fill the available width,
+       have its borders collapsed into single lines (no double borders),
+       a top margin (15px), and a font size of 0.95rem.
+       💡 Look up the border-collapse property — it is specific to tables. */
+
+/* 45. Every <td> and <th> should have comfortable padding
+       (10px top/bottom, 14px sides) and a thin bottom border (1px solid #ddd). */
+
+/* 46. The entire header row (inside <thead>) should have a dark teal
+       background (#006064), white text, and left-aligned text. */
+
+/* 47. In the table body, rows should alternate colors:
+       even rows get a light teal tint (#f1f8f9), odd rows stay white.
+       💡 :nth-child(even) and :nth-child(odd) work on table rows too. */
+
+/* 48. Hovering over any body row should highlight it in brighter teal (#e0f7fa),
+       with a smooth 0.15s transition. */
+
+/* =============================================================
+   LEVEL 9 — Links
+   ============================================================= */
+
+/* 49. Inside .links, remove the bullet points from the list
+       and reset its left indentation to 0. */
+
+/* 50. All links inside .links should stretch across the full line
+       (so the entire row is clickable), with padding (8px top/bottom,
+       12px sides), rounded corners (6px), no underline, blue color (#0288d1),
+       bold text, and a smooth 0.2s transition on background and color. */
+.links a {
+}
+
+/* 51. On hover, a .links link should get a light blue background (#e1f5fe),
+       darker blue text (#01579b), and shift its text 18px to the right.
+       The text shift should be part of the transition too. */
+
+/* 52. Links that the user has already visited should turn purple (#7b1fa2).
+       💡 :visited only supports a small set of CSS properties for security
+          reasons — color is one of them. */
+
+/* 53. While a link is actively being clicked (mouse button held down),
+       change its color to burnt orange (#bf360c).
+       💡 One of the link pseudo-classes represents exactly this moment. */
+
+/* 54. Links pointing to external sites (href starts with "https")
+       should appear in a different color (#00838f) and automatically
+       display a small "↗" symbol after the link text.
+       💡 An attribute selector can check the beginning of a value with ^= */
+
+/* =============================================================
+   LEVEL 10 — Advanced selectors
+   ============================================================= */
+
+/* 55. Inside .intro, every <p> that comes AFTER the <h2> as a sibling
+       should have a pink left border (3px solid #f48fb1)
+       and left padding (10px).
+       💡 The ~ combinator targets all following siblings at the same level. */
+
+/* 56. In the form, if a short error message <p> were added immediately
+       after a <label>, it should appear small (0.8rem), red (#c62828),
+       with a negative top margin (-8px) to sit close to the label.
+       Write this rule now even though no such paragraph exists yet.
+       💡 The + combinator targets the immediately adjacent sibling only. */
+
+/* 57. Some inputs have the "required" attribute in the HTML.
+       Target those specifically and add a purple left border (3px solid #7b1fa2)
+       to visually signal they are mandatory.
+       💡 [required] is an attribute selector — no value is needed,
+          just the presence of the attribute. */
+
+/* 58. Inside the <select>, the option with value "css" should appear
+       bold and purple (#6a1b9a).
+       💡 Target a specific attribute value with [value="..."] */
+
+/* 59. The <textarea> can currently be resized freely in both directions.
+       Restrict it so users can only drag it vertically.
+       💡 Look up the resize property. */
+
+/* 60. All <section> elements should have a bottom margin (25px),
+       EXCEPT .blog — it already manages its own spacing.
+       💡 :not() lets you write "apply this to everything except...". */
+
+/* =============================================================
+   BONUS — No hints. Figure out selectors and properties yourself!
+   ============================================================= */
+
+/* BONUS A. Every section's <h2> should display a short decorative
+            bar (#006064) underneath it — 40px wide, 3px tall,
+            with a 6px gap between the text and the bar.
+            Do this without adding any HTML. */
+
+/* BONUS B. Style the <time> elements inside .post-meta to look like
+            inline code chips: monospace font, light gray background (#f5f5f5),
+            tiny padding (1px top/bottom, 5px sides), rounded corners (3px). */
+
+/* BONUS C. In the table header row, make the Chrome and Firefox columns
+            (2nd and 3rd <th>) stand out with a slightly different
+            background color (#00838f). */
+
+/* BONUS D. The .featured article should display a "⭐ Featured" badge
+            pinned to its top-right corner — without touching the HTML. */
+
+/* BONUS E. When a checkbox inside .checklist is checked, the entire
+            <li> it belongs to should look completed: struck-through text
+            and gray color (#aaa).
+            💡 :has() is a modern selector that targets a parent
+               based on what it contains. */

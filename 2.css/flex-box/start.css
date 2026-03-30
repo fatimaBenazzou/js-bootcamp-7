@@ -1,0 +1,539 @@
+/* ── Reset & base ─────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+ul {
+  list-style: none;
+}
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+a {
+  text-decoration: none;
+}
+
+/* ── Design tokens ────────────────────────────────────── */
+:root {
+  --bg: #0d0d0f;
+  --surface: #18181c;
+  --surface-2: #212128;
+  --border: #2e2e38;
+  --accent: #c8f04a;
+  --accent-dim: #8fad2e;
+  --text: #f0f0f0;
+  --text-2: #9090a0;
+  --text-3: #55555f;
+  --danger: #ff6b6b;
+  --radius: 10px;
+  --player-h: 72px;
+  --nav-h: 60px;
+  --sidebar-w: 220px;
+
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* ── Typography ───────────────────────────────────────── */
+.navbar__name {
+  font-family: "Syne", sans-serif;
+  font-weight: 800;
+  font-size: 1.2rem;
+}
+.navbar__logo {
+  color: var(--accent);
+  font-size: 1.3rem;
+}
+.section-header__title {
+  font-family: "Syne", sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+}
+.section-header__meta {
+  color: var(--text-2);
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+/* ── Navbar ───────────────────────────────────────────── */
+.navbar {
+  height: var(--nav-h);
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 0 24px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  /* YOUR FLEXBOX RULES GO HERE — see Part 1 */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.navbar__brand {
+  gap: 10px;
+  display: flex;
+  align-items: center;
+}
+.navbar__links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.navbar__link {
+  color: var(--text-2);
+  font-size: 0.9rem;
+  padding: 6px 14px;
+  border-radius: 20px;
+  transition: all 0.2s;
+}
+.navbar__link:hover,
+.navbar__link.active {
+  color: var(--text);
+  background: var(--surface-2);
+}
+.navbar__link.active {
+  color: var(--accent);
+}
+.navbar__actions {
+  gap: 8px;
+  display: flex;
+  align-items: center;
+}
+
+/* ── Buttons ──────────────────────────────────────────── */
+.btn-icon {
+  background: none;
+  border: none;
+  color: var(--text-2);
+  font-size: 1rem;
+  padding: 8px;
+  border-radius: 6px;
+  transition: color 0.2s;
+}
+.btn-icon:hover {
+  color: var(--text);
+}
+
+.btn-play {
+  background: var(--accent);
+  color: #0d0d0f;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 20px;
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  transition: background 0.2s;
+}
+.btn-play:hover {
+  background: var(--accent-dim);
+}
+
+.btn-secondary {
+  background: var(--surface-2);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+  padding: 9px 16px;
+  border-radius: 20px;
+  font-size: 0.82rem;
+  transition: all 0.2s;
+}
+.btn-secondary:hover {
+  color: var(--text);
+  border-color: var(--text-3);
+}
+
+/* ── Avatar ───────────────────────────────────────────── */
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--accent);
+  color: #0d0d0f;
+  font-weight: 700;
+  font-size: 0.75rem;
+  /* YOUR FLEXBOX RULES GO HERE — see Part 1 bonus */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Layout ───────────────────────────────────────────── */
+.layout {
+  height: calc(100vh - var(--nav-h) - var(--player-h));
+  overflow: hidden;
+  /* YOUR FLEXBOX RULES GO HERE — see Part 2 */
+  display: flex;
+  align-items: stretch;
+}
+
+/* ── Sidebar ──────────────────────────────────────────── */
+.sidebar {
+  width: var(--sidebar-w);
+  min-width: var(--sidebar-w);
+  background: var(--surface);
+  border-right: 1px solid var(--border);
+  padding: 24px 12px;
+  overflow-y: auto;
+  /* YOUR FLEXBOX RULES GO HERE — see Part 2 */
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  gap: 8px;
+}
+.sidebar__label {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-3);
+  padding: 0 10px;
+  margin-bottom: 6px;
+  margin-top: 20px;
+}
+.sidebar__label:first-child {
+  margin-top: 0;
+}
+.sidebar__item {
+  color: var(--text-2);
+  padding: 9px 10px;
+  border-radius: 8px;
+  font-size: 0.88rem;
+  cursor: pointer;
+  transition: all 0.15s;
+  gap: 10px;
+  /* YOUR FLEXBOX RULES GO HERE — see Part 2 */
+  display: flex;
+  align-items: center;
+}
+.sidebar__item:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+.sidebar__item.active {
+  background: var(--surface-2);
+  color: var(--accent);
+}
+.sidebar__icon {
+  font-size: 0.8rem;
+  color: var(--text-3);
+}
+.sidebar__item.active .sidebar__icon {
+  color: var(--accent);
+}
+
+/* ── Content area ─────────────────────────────────────── */
+.content {
+  flex: 1;
+  overflow-y: auto;
+  padding: 32px;
+  /* YOUR FLEXBOX RULES GO HERE — see Part 3 */
+}
+
+/* ── Section header ───────────────────────────────────── */
+.section-header {
+  margin-bottom: 32px;
+  /* YOUR FLEXBOX RULES GO HERE — see Part 3 */
+}
+.section-header__actions {
+  gap: 10px;
+}
+
+/* ── Featured cards ───────────────────────────────────── */
+.featured-row {
+  margin-bottom: 40px;
+  gap: 16px;
+  /* YOUR FLEXBOX RULES GO HERE — see Part 4 */
+}
+.featured-card {
+  flex: 1;
+  min-width: 160px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  cursor: pointer;
+  transition: border-color 0.2s;
+  /* YOUR FLEXBOX RULES GO HERE — see Part 4 */
+}
+.featured-card:hover {
+  border-color: var(--text-3);
+}
+.featured-card--active {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+}
+.featured-card__art {
+  width: 52px;
+  height: 52px;
+  background: var(--surface-2);
+  border-radius: 8px;
+  font-size: 1.4rem;
+  margin-bottom: 14px;
+  /* YOUR FLEXBOX RULES GO HERE — see Part 4 */
+}
+.featured-card--active .featured-card__art {
+  background: var(--accent);
+  color: #0d0d0f;
+}
+.featured-card__title {
+  font-size: 0.7rem;
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+.featured-card__name {
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+.featured-card__artist {
+  font-size: 0.82rem;
+  color: var(--text-2);
+}
+
+/* ── Playing animation ────────────────────────────────── */
+.featured-card__playing {
+  gap: 3px;
+  /* YOUR FLEXBOX RULES GO HERE — see Part 4 bonus */
+}
+.featured-card__playing span {
+  width: 3px;
+  background: #0d0d0f;
+  border-radius: 2px;
+  animation: eq 0.8s ease-in-out infinite alternate;
+}
+.featured-card__playing span:nth-child(1) {
+  height: 8px;
+  animation-delay: 0s;
+}
+.featured-card__playing span:nth-child(2) {
+  height: 14px;
+  animation-delay: 0.15s;
+}
+.featured-card__playing span:nth-child(3) {
+  height: 10px;
+  animation-delay: 0.3s;
+}
+.featured-card__playing span:nth-child(4) {
+  height: 6px;
+  animation-delay: 0.45s;
+}
+@keyframes eq {
+  from {
+    transform: scaleY(0.4);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+
+/* ── Track list ───────────────────────────────────────── */
+.tracklist {
+  border-top: 1px solid var(--border);
+}
+
+.tracklist__header {
+  padding: 10px 16px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text-3);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  /* YOUR FLEXBOX RULES GO HERE — see Part 5 */
+}
+
+.track {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.15s;
+  /* YOUR FLEXBOX RULES GO HERE — see Part 5 */
+}
+.track:hover {
+  background: var(--surface);
+}
+.track--playing {
+  background: color-mix(in srgb, var(--accent) 5%, var(--bg));
+}
+.track--playing .track__name {
+  color: var(--accent);
+}
+.track--playing .track__num {
+  color: var(--accent);
+  font-size: 0.75rem;
+}
+
+/* Column widths */
+.col-num {
+  width: 32px;
+  min-width: 32px;
+  color: var(--text-3);
+  font-size: 0.85rem;
+}
+.col-title {
+  flex: 1;
+  min-width: 0;
+}
+.col-album {
+  width: 160px;
+  min-width: 160px;
+  color: var(--text-2);
+}
+.col-tags {
+  width: 160px;
+  min-width: 160px;
+  gap: 6px;
+}
+.col-duration {
+  width: 60px;
+  min-width: 60px;
+  color: var(--text-2);
+  text-align: right;
+}
+
+.track__info {
+  gap: 2px;
+}
+/* YOUR FLEXBOX RULES GO HERE — see Part 5 (track__info is a column) */
+
+.track__name {
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.track__artist {
+  font-size: 0.8rem;
+  color: var(--text-2);
+}
+.track__album {
+  font-size: 0.85rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Tags ─────────────────────────────────────────────── */
+.tag {
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  border-radius: 20px;
+  background: var(--surface-2);
+  color: var(--text-2);
+  border: 1px solid var(--border);
+  white-space: nowrap;
+}
+.col-tags {
+  /* YOUR FLEXBOX RULES GO HERE — see Part 5 */
+}
+
+/* ── Player bar ───────────────────────────────────────── */
+.player {
+  height: var(--player-h);
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 0 24px;
+  position: sticky;
+  bottom: 0;
+  z-index: 100;
+  /* YOUR FLEXBOX RULES GO HERE — see Part 6 */
+}
+
+.player__track {
+  gap: 12px;
+  /* YOUR FLEXBOX RULES GO HERE — see Part 6 */
+}
+.player__art {
+  width: 44px;
+  height: 44px;
+  background: var(--accent);
+  color: #0d0d0f;
+  font-size: 1.2rem;
+  border-radius: 6px;
+  flex-shrink: 0;
+  /* YOUR FLEXBOX RULES GO HERE — see Part 6 bonus */
+}
+.player__info {
+  gap: 3px;
+}
+/* YOUR FLEXBOX RULES GO HERE — see Part 6 (player__info is a column) */
+.player__name {
+  font-weight: 500;
+  font-size: 0.88rem;
+}
+.player__artist {
+  font-size: 0.78rem;
+  color: var(--text-2);
+}
+
+.player__controls {
+  gap: 12px;
+  /* YOUR FLEXBOX RULES GO HERE — see Part 6 */
+}
+.btn-play-main {
+  width: 40px;
+  height: 40px;
+  background: var(--accent);
+  color: #0d0d0f;
+  border: none;
+  border-radius: 50%;
+  font-size: 0.9rem;
+  transition: background 0.2s;
+  flex-shrink: 0;
+  /* YOUR FLEXBOX RULES GO HERE — see Part 6 bonus */
+}
+.btn-play-main:hover {
+  background: var(--accent-dim);
+}
+
+.player__progress {
+  gap: 10px;
+  /* YOUR FLEXBOX RULES GO HERE — see Part 6 */
+}
+.player__time {
+  font-size: 0.75rem;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+
+.progress-bar {
+  height: 4px;
+  background: var(--surface-2);
+  border-radius: 2px;
+  cursor: pointer;
+  flex: 1;
+  position: relative;
+}
+.progress-bar__fill {
+  width: 39%;
+  height: 100%;
+  background: var(--accent);
+  border-radius: 2px;
+}
+
+.player__volume {
+  gap: 10px;
+  /* YOUR FLEXBOX RULES GO HERE — see Part 6 */
+}
+.volume-bar {
+  width: 80px;
+  height: 4px;
+  background: var(--surface-2);
+  border-radius: 2px;
+  cursor: pointer;
+  position: relative;
+}
+.volume-bar__fill {
+  width: 65%;
+  height: 100%;
+  background: var(--text-2);
+  border-radius: 2px;
+}

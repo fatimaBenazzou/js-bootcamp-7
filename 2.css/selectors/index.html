@@ -1,0 +1,231 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Super CSS Challenge</title>
+    <link rel="stylesheet" href="instructions.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Welcome to Your CSS Challenge!</h1>
+      <p class="tagline">Master selectors, one rule at a time.</p>
+    </header>
+
+    <main>
+      <p>
+        This paragraph is a <strong>direct child</strong> of main — style it
+        uniquely!
+      </p>
+      <p class="highlight">
+        I have a class, but I'm still a direct child of main.
+      </p>
+
+      <!-- ===================== INTRO ===================== -->
+      <section class="intro">
+        <h2>Introduction</h2>
+        <p class="hello">Hello! I'm a stylish paragraph inside a section.</p>
+        <p id="special">I'm special. Treat me with a unique style!</p>
+        <p>
+          This is a <em>fun</em> and <strong>challenging</strong> CSS exercise
+          where you style everything using an external CSS file.
+        </p>
+        <blockquote>
+          "CSS is not a bug. It's a feature." — Every front-end developer ever.
+        </blockquote>
+      </section>
+
+      <!-- ===================== CHECKLIST ===================== -->
+      <section class="checklist">
+        <h2>Task List</h2>
+        <ul>
+          <li>Style paragraphs <input type="checkbox" checked /></li>
+          <li>Color backgrounds <input type="checkbox" /></li>
+          <li>Use pseudo-classes <input type="checkbox" /></li>
+          <li>Use hover effects <input type="checkbox" checked /></li>
+          <li>Style forms <input type="checkbox" /></li>
+          <li>Use pseudo-elements <input type="checkbox" checked /></li>
+          <li>Bonus level <input type="checkbox" /></li>
+        </ul>
+      </section>
+
+      <!-- ===================== CONTACT ===================== -->
+      <section class="contact">
+        <h2>Contact Form</h2>
+        <form>
+          <label for="name">Name:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Your name"
+            required
+          />
+
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="you@example.com"
+          />
+
+          <label for="age">Age:</label>
+          <input type="number" id="age" name="age" min="1" max="120" />
+
+          <label for="website">Website:</label>
+          <input
+            type="url"
+            id="website"
+            name="website"
+            placeholder="https://yoursite.com"
+          />
+
+          <label for="language">Favorite Language:</label>
+          <select id="language">
+            <option value="html">HTML</option>
+            <option value="css">CSS</option>
+            <option value="js">JavaScript</option>
+            <option value="python">Python</option>
+          </select>
+
+          <label for="message">Message:</label>
+          <textarea
+            id="message"
+            name="message"
+            rows="4"
+            placeholder="Write your message here..."
+          ></textarea>
+
+          <div class="form-actions">
+            <button type="reset" class="btn-reset">Reset</button>
+            <button type="submit" class="btn-submit">Send Message</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- ===================== BLOG ===================== -->
+      <section class="blog">
+        <h2>Blog Posts</h2>
+        <article class="post">
+          <h3>Post 1: CSS Basics</h3>
+          <p class="post-meta">
+            Published on <time datetime="2024-01-10">January 10, 2024</time> · 3
+            min read
+          </p>
+          <p>
+            Learn how to select elements and apply styles to build beautiful
+            pages.
+          </p>
+          <a href="#" class="read-more">Read more</a>
+        </article>
+        <article class="post featured">
+          <h3>Post 2: Layout Magic</h3>
+          <p class="post-meta">
+            Published on <time datetime="2024-02-14">February 14, 2024</time> ·
+            5 min read
+          </p>
+          <p>
+            Use Flexbox and Grid to create amazing, responsive layouts with
+            ease.
+          </p>
+          <a href="#" class="read-more">Read more</a>
+        </article>
+        <article class="post">
+          <h3>Post 3: Animations</h3>
+          <p class="post-meta">
+            Published on <time datetime="2024-03-20">March 20, 2024</time> · 4
+            min read
+          </p>
+          <p>
+            Add life to your site with CSS transitions and keyframe animations.
+          </p>
+          <a href="#" class="read-more">Read more</a>
+        </article>
+        <article class="post">
+          <h3>Post 4: Accessibility</h3>
+          <p class="post-meta">
+            Published on <time datetime="2024-04-05">April 5, 2024</time> · 6
+            min read
+          </p>
+          <p>
+            Build websites that everyone can use — a guide to accessible CSS.
+          </p>
+          <a href="#" class="read-more">Read more</a>
+        </article>
+      </section>
+
+      <!-- ===================== TABLE ===================== -->
+      <section class="data-table">
+        <h2>Browser Support</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Chrome</th>
+              <th>Firefox</th>
+              <th>Safari</th>
+              <th>Edge</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>CSS Variables</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+            </tr>
+            <tr>
+              <td>Grid</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+            </tr>
+            <tr>
+              <td>Flexbox</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+            </tr>
+            <tr>
+              <td>:has() selector</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+            </tr>
+            <tr>
+              <td>Container Queries</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+              <td>✓</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <!-- ===================== LINKS ===================== -->
+      <nav class="links">
+        <h2>Useful Links</h2>
+        <ul>
+          <li><a href="#">Internal Page</a></li>
+          <li><a href="https://developer.mozilla.org">MDN Web Docs</a></li>
+          <li><a href="https://css-tricks.com">CSS-Tricks</a></li>
+          <li><a href="https://web.dev">web.dev</a></li>
+          <li><a href="https://caniuse.com">Can I Use</a></li>
+        </ul>
+      </nav>
+    </main>
+
+    <footer>
+      <p class="footer-tip">
+        💡 Tip: always use external stylesheets to keep your HTML clean.
+      </p>
+      <p class="footer-copy">© 2024 CSS Challenge. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
