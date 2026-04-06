@@ -1,0 +1,52 @@
+#services > .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.services-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(360px, 1fr));
+  gap: 3rem;
+}
+
+#services .card {
+  background-color: var(--secondary-color);
+  border-radius: 24px;
+  padding: 2.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+#services .card .circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--neutral-color);
+  color: var(--base-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition:
+    background-color 300ms ease-in,
+    color 100ms ease-in;
+}
+
+#services .card .circle span {
+  color: inherit;
+}
+
+#services .card.card-selected,
+#services .card:hover {
+  background-color: var(--primary-color);
+  color: var(--base-color);
+}
+
+#services .card.card-selected .circle,
+#services .card:hover .circle {
+  background-color: var(--base-color);
+  color: var(--neutral-color);
+}
