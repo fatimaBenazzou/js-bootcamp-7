@@ -87,3 +87,22 @@
   height: 1px;
   width: 40%;
 }
+
+.card-body .title h3 {
+  width: 60%;
+  text-transform: none;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.card-body .description {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.card-body .description p {
+  max-width: 40%;
+  line-height: 1.5;
+}
