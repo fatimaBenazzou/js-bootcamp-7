@@ -106,3 +106,18 @@
   max-width: 40%;
   line-height: 1.5;
 }
+
+.project-container .card .circle {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.project-container .card .circle span {
+  color: inherit;
+}
