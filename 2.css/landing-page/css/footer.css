@@ -1,0 +1,37 @@
+footer {
+  background-color: var(--secondary-color);
+  width: 100%;
+  padding: 2.5rem 0;
+  font-size: 14px;
+}
+
+footer > .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+footer li {
+  font-weight: 400;
+  text-transform: capitalize;
+  transition: color 300ms ease-in;
+}
+
+footer li:hover {
+  color: var(--primary-color);
+}
+
+footer .links,
+footer .social,
+footer .container div:first-of-type,
+footer .container div:last-of-type {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.social {
+  margin-right: 2rem;
+}
