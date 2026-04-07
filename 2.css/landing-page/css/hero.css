@@ -11,6 +11,7 @@
   display: flex;
   justify-content: space-between;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 #hero h1 {
@@ -27,6 +28,7 @@
 .hero-stats {
   width: 100%;
   display: flex;
+  flex-direction: row;
   gap: 5rem;
 }
 
@@ -73,4 +75,35 @@
   flex-direction: column;
   padding: 2rem 0;
   border-bottom: solid 2px currentColor;
+}
+
+@media (max-width: 1200px) {
+  h1 {
+    max-width: 16ch;
+  }
+
+  #hero p {
+    font-size: 1rem;
+  }
+
+  #hero .start {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .hero-stats {
+    flex-direction: column;
+  }
+
+  #hero .stats {
+    flex-direction: row;
+    gap: 2rem;
+  }
+
+  #hero .stats li {
+    min-width: auto;
+    border-bottom: none;
+  }
 }

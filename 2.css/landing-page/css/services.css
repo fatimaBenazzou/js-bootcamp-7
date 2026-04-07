@@ -50,3 +50,15 @@
   background-color: var(--base-color);
   color: var(--neutral-color);
 }
+
+@media screen and (max-width: 1200px) {
+  #services ul {
+    grid-template-columns: repeat(2, minmax(360px, 1fr));
+  }
+}
+
+@media screen and (max-width: 768px) {
+  #services ul {
+    grid-template-columns: 1fr;
+  }
+}

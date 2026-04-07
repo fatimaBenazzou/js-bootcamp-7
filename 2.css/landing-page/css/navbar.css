@@ -26,3 +26,61 @@ nav {
 .navigation > li.active {
   color: var(--primary-color);
 }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  width: 2.125rem;
+  gap: 0.5rem;
+  margin-left: auto;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.line {
+  height: 0.25rem;
+  width: 100%;
+  background-color: var(--neutral-color);
+  border-radius: 0.5rem;
+  transition: background-color 300ms ease-in;
+}
+
+.hamburger:hover .line {
+  background-color: var(--primary-color);
+}
+
+.navigation .close {
+  display: none;
+}
+
+@media (max-width: 1200px) {
+  nav .navigation,
+  nav .btn {
+    display: none;
+  }
+
+  nav .navigation.open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 5;
+    background-color: #000000ea;
+    padding: 7rem 0 1rem;
+  }
+
+  nav .navigation.open .close {
+    display: flex;
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    font-size: 2rem;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+}

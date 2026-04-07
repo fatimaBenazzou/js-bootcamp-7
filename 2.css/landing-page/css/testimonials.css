@@ -7,6 +7,7 @@
 
 #testimonials .content {
   display: flex;
+  flex-direction: row;
   width: 100%;
   justify-content: space-between;
   align-items: center;
@@ -173,4 +174,33 @@
 .action button:hover span {
   transition: color 300ms ease-in;
   color: inherit;
+}
+
+@media (max-width: 1200px) {
+  #testimonials .content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  #review-slider {
+    width: 100%;
+    max-width: 100%;
+    font-size: 18px;
+  }
+
+  .review-container > li {
+    align-items: center;
+  }
+
+  .action {
+    position: unset;
+  }
+}
+
+@media (max-width: 768px) {
+  .rating span {
+    width: 20px;
+    height: 20px;
+  }
 }

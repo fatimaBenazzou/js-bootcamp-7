@@ -25,13 +25,35 @@ footer li:hover {
 
 footer .links,
 footer .social,
-footer .container div:first-of-type,
-footer .container div:last-of-type {
+.container > div {
   display: flex;
   align-items: center;
+
   gap: 2rem;
 }
-
+.container > div {
+  justify-content: space-between;
+  flex-grow: 1;
+}
 .social {
   margin-right: 2rem;
+}
+
+@media (max-width: 1200px) {
+  footer .copyright,
+  footer .logo {
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  footer .social {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  footer .links {
+    flex-direction: column;
+  }
 }
