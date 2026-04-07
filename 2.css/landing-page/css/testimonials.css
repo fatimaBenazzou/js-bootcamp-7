@@ -1,0 +1,176 @@
+#testimonials .container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+#testimonials .content {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  gap: 4rem;
+  position: relative;
+}
+
+/* figure */
+.figure {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 400px;
+  aspect-ratio: 1;
+  width: 100%;
+  position: relative;
+}
+
+/* circles */
+.figure::before {
+  content: " ";
+  position: absolute;
+  border: 1px solid var(--neutral-color);
+  top: -0.5rem;
+  left: -0.5rem;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.figure::after {
+  content: " ";
+  position: absolute;
+  border: 1px solid var(--neutral-color);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.centered-img {
+  position: relative;
+  margin: auto;
+}
+
+.figure > .floating,
+.centered-img > .floating {
+  position: absolute;
+  z-index: 2;
+}
+.centered-img > .floating {
+  top: 35%;
+  right: -15%;
+}
+
+.figure > .floating:nth-of-type(1) {
+  top: 5%;
+  right: 5%;
+}
+.figure > .floating:nth-of-type(2) {
+  bottom: 0;
+  right: 10%;
+}
+.figure > .floating:nth-of-type(3) {
+  bottom: 10%;
+  left: 3%;
+}
+.figure > .floating:nth-of-type(4) {
+  top: 0%;
+  left: 5%;
+}
+
+/* review */
+#review-slider {
+  overflow: hidden;
+  width: 45%;
+  min-width: 250px;
+}
+
+.review-container {
+  display: flex;
+  align-items: center;
+}
+
+.review-container > li {
+  font-size: 20px;
+  line-height: 2.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex: 0 0 100%;
+}
+
+.rating {
+  display: flex;
+}
+
+.rating span {
+  width: 42px;
+  height: 42px;
+  background-color: rgba(var(--primary-color-val), 0.5);
+}
+
+.rating[data-rating="1"] span:first-of-type {
+  background-color: rgba(var(--primary-color-val), 1);
+}
+
+.rating[data-rating="2"] span:nth-of-type(1),
+.rating[data-rating="2"] span:nth-of-type(2) {
+  background-color: rgba(var(--primary-color-val), 1);
+}
+
+.rating[data-rating="3"] span:nth-of-type(1),
+.rating[data-rating="3"] span:nth-of-type(2),
+.rating[data-rating="3"] span:nth-of-type(3) {
+  background-color: rgba(var(--primary-color-val), 1);
+}
+
+.rating[data-rating="4"] span:nth-of-type(1),
+.rating[data-rating="4"] span:nth-of-type(2),
+.rating[data-rating="4"] span:nth-of-type(3),
+.rating[data-rating="4"] span:nth-of-type(4) {
+  background-color: rgba(var(--primary-color-val), 1);
+}
+
+.rating[data-rating="5"] span:nth-of-type(1),
+.rating[data-rating="5"] span:nth-of-type(2),
+.rating[data-rating="5"] span:nth-of-type(3),
+.rating[data-rating="5"] span:nth-of-type(4),
+.rating[data-rating="5"] span:nth-of-type(5) {
+  background-color: rgba(var(--primary-color-val), 1);
+}
+
+/* actions */
+.action {
+  position: absolute;
+  bottom: 15%;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.action button {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  transform: background-color 300ms ease-in;
+}
+
+.action button:hover {
+  background-color: var(--primary-color);
+  color: var(--base-color);
+}
+
+.action button.prev {
+  transform: rotateZ(180deg);
+}
+
+.action button:hover span {
+  transition: color 300ms ease-in;
+  color: inherit;
+}

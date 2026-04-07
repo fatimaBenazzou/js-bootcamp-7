@@ -1,6 +1,7 @@
 /*  variables */
 :root {
-  --primary-color: #ffdf00;
+  --primary-color: rgb(255, 223, 0);
+  --primary-color-val: 255, 223, 0;
   --primary-color-hover: rgb(255, 223, 0, 0.2);
   --secondary-color: #1b1b1b;
   --base-color: #151515;
