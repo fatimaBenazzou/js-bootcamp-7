@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="A beautiful and productive Pomodoro Timer to boost your focus and productivity"
+    />
+    <title>Pomodoro Focus Timer</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Theme Toggle Button -->
+    <button
+      id="theme-toggle"
+      class="theme-toggle"
+      aria-label="Toggle dark/light mode"
+    >
+      <svg
+        class="sun-icon"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <circle cx="12" cy="12" r="5"></circle>
+        <line x1="12" y1="1" x2="12" y2="3"></line>
+        <line x1="12" y1="21" x2="12" y2="23"></line>
+        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+        <line x1="1" y1="12" x2="3" y2="12"></line>
+        <line x1="21" y1="12" x2="23" y2="12"></line>
+        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+      </svg>
+      <svg
+        class="moon-icon"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+      </svg>
+    </button>
+
+    <main class="container">
+      <!-- Header Section -->
+      <header class="header">
+        <h1 class="title">Pomodoro Timer</h1>
+        <p class="subtitle">Stay focused, stay productive</p>
+      </header>
+
+      <!-- Timer Card -->
+      <div class="timer-card">
+        <!-- Status Indicator -->
+        <div class="status-badge" id="status-badge">
+          <span class="status-dot"></span>
+          <span class="status-text" id="status-text">Ready to Focus</span>
+        </div>
+
+        <!-- Main Timer Display -->
+        <div class="timer-display">
+          <time id="timer" class="timer-text" datetime="PT25M">25:00</time>
+          <div class="timer-progress">
+            <div class="progress-bar" id="progress-bar"></div>
+          </div>
+        </div>
+
+        <!-- Control Buttons -->
+        <div class="controls">
+          <button
+            id="start-btn"
+            class="btn btn-primary"
+            aria-label="Start timer"
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M8 5v14l11-7z" />
+            </svg>
+            <span>Start</span>
+          </button>
+          <button
+            id="pause-btn"
+            class="btn btn-secondary"
+            aria-label="Pause timer"
+            disabled
+          >
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M6 4h4v16H6V4zm8 0h4v16h-4V4z" />
+            </svg>
+            <span>Pause</span>
+          </button>
+          <button
+            id="reset-btn"
+            class="btn btn-secondary"
+            aria-label="Reset timer"
+          >
+            <svg
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8" />
+              <path d="M21 3v5h-5" />
+            </svg>
+            <span>Reset</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Settings Section -->
+      <section class="settings">
+        <h2 class="settings-title">Timer Settings</h2>
+
+        <div class="settings-grid">
+          <!-- Session Length Setting -->
+          <div class="setting-item">
+            <label for="session-value" class="setting-label">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              Focus Duration
+            </label>
+            <div class="setting-control">
+              <button
+                id="session-dec"
+                class="btn-icon"
+                aria-label="Decrease session length"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </button>
+              <output
+                id="session-value"
+                class="setting-value"
+                for="session-dec session-inc"
+                >25</output
+              >
+              <span class="setting-unit">min</span>
+              <button
+                id="session-inc"
+                class="btn-icon"
+                aria-label="Increase session length"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Break Length Setting -->
+          <div class="setting-item">
+            <label for="break-value" class="setting-label">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"
+                ></path>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <path d="M16 10a4 4 0 0 1-8 0"></path>
+              </svg>
+              Break Duration
+            </label>
+            <div class="setting-control">
+              <button
+                id="break-dec"
+                class="btn-icon"
+                aria-label="Decrease break length"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </button>
+              <output
+                id="break-value"
+                class="setting-value"
+                for="break-dec break-inc"
+                >5</output
+              >
+              <span class="setting-unit">min</span>
+              <button
+                id="break-inc"
+                class="btn-icon"
+                aria-label="Increase break length"
+              >
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <line x1="12" y1="5" x2="12" y2="19"></line>
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Statistics Section -->
+      <section class="stats">
+        <div class="stat-card">
+          <div class="stat-icon">🎯</div>
+          <div class="stat-content">
+            <p class="stat-value" id="sessions-completed">0</p>
+            <p class="stat-label">Sessions Completed</p>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⏱️</div>
+          <div class="stat-content">
+            <p class="stat-value" id="total-time">0</p>
+            <p class="stat-label">Minutes Focused</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="instructions.js"></script>
+  </body>
+</html>

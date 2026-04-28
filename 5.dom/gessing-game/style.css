@@ -1,0 +1,120 @@
+*,
+*:before,
+*:after {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  height: 100vh;
+  background: linear-gradient(to right, #7f53ac, #657ced);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container {
+  width: 90%;
+  max-width: 500px;
+  background-color: #ffffff;
+  padding: 50px;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: "Poppins", sans-serif;
+}
+h1 {
+  font-size: 32px;
+  font-weight: 600;
+  color: #663399;
+  margin-bottom: 15px;
+}
+.subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: #333;
+  text-align: center;
+  margin-bottom: 10px;
+}
+.game-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+input[type="number"] {
+  width: 150px;
+  font-weight: 600;
+  color: #663399;
+  padding: 12px;
+  text-align: center;
+  margin-bottom: 15px;
+  border-radius: 5px;
+  border: 2px solid #663399;
+  font-size: 20px;
+  transition: border-color 0.3s;
+}
+input[type="number"]:focus {
+  outline: none;
+  border-color: #7f53ac;
+  box-shadow: 0 0 5px rgba(127, 83, 172, 0.3);
+}
+button {
+  width: 160px;
+  padding: 12px 0;
+  border-radius: 5px;
+  background-color: #663399;
+  color: #ffffff;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+button:hover {
+  background-color: #7f53ac;
+}
+button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
+}
+.feedback-section {
+  width: 100%;
+  text-align: center;
+}
+.feedback {
+  font-size: 20px;
+  font-weight: 600;
+  color: #663399;
+  margin-bottom: 10px;
+  min-height: 24px;
+}
+.attempts {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 10px;
+}
+.guessed {
+  font-size: 14px;
+  font-weight: 400;
+  color: #666;
+  margin-bottom: 10px;
+  word-break: break-word;
+}
+.game-status {
+  font-size: 18px;
+  font-weight: 600;
+  color: #28a745;
+  margin-top: 15px;
+  min-height: 24px;
+}
+.game-status.loss {
+  color: #dc3545;
+}
+.game-status.win {
+  color: #28a745;
+}
