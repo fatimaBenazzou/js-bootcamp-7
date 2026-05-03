@@ -106,6 +106,28 @@ const NUMBER_COLORS = [
   "#F29FF5",
   "#c154d8",
 ];
+
+// ── SVG icons (flag & mine) ───────────────────────────────
+const FLAG_ICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 287.987 287.987" aria-hidden="true">
+    <path d="M228.702,141.029c-3.114-3.754-3.114-9.193,0-12.946l33.58-40.474
+      c2.509-3.024,3.044-7.226,1.374-10.783c-1.671-3.557-5.246-5.828-9.176-5.828h-57.647v60.98
+      c0,16.618-13.52,30.138-30.138,30.138h-47.093v25.86c0,5.599,4.539,10.138,10.138,10.138
+      h124.74c3.93,0,7.505-2.271,9.176-5.828c1.671-3.557,1.135-7.759-1.374-10.783L228.702,141.029z"/>
+    <path d="M176.832,131.978V25.138c0-5.599-4.539-10.138-10.138-10.138H53.37
+      c0-8.284-6.716-15-15-15s-15,6.716-15,15c0,7.827,0,253.91,0,257.987
+      c0,8.284,6.716,15,15,15s15-6.716,15-15c0-6.943,0-126.106,0-130.871h113.324
+      C172.293,142.116,176.832,137.577,176.832,131.978z"/>
+  </svg>`;
+
+const MINE_ICON = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" aria-hidden="true">
+    <path d="m411.313,123.313c6.25-6.25 6.25-16.375 0-22.625s-16.375-6.25-22.625,0l-32,32-9.375,9.375
+      -20.688-20.688c-12.484-12.5-32.766-12.5-45.25,0l-16,16c-1.261,1.261-2.304,2.648-3.31,4.051
+      -21.739-8.561-45.324-13.426-70.065-13.426-105.867,0-192,86.133-192,192s86.133,192 192,192
+      192-86.133 192-192c0-24.741-4.864-48.327-13.426-70.065 1.402-1.007 2.79-2.049 4.051-3.31
+      l16-16c12.5-12.492 12.5-32.758 0-45.25l-20.688-20.688 9.375-9.375 32.001-31.999z
+      m-219.313,100.687c-52.938,0-96,43.063-96,96 0,8.836-7.164,16-16,16s-16-7.164-16-16
+      c0-70.578 57.422-128 128-128 8.836,0 16,7.164 16,16s-7.164,16-16,16z"/>
+  </svg>`;
 // ============================================================
 // === STEP 3: Define the Game State Object ===
 // ============================================================
@@ -306,7 +328,7 @@ function placeMines(safeIdx) {
       tile.dataset.mine = "true";
     } else {
       const adjacent = getNeighbours(idx).filter((n) =>
-        mineSet.includes(mineSet),
+        mineSet.includes(n),
       ).length;
       tile.dataset.adjacent = adjacent;
     }
@@ -326,25 +348,39 @@ function placeMines(safeIdx) {
 //
 //  Inside revealTile():
 //
-//  a) Get the tile element: state.tiles[idx].
-//
-//  b) If the tile already has the CSS class "checked" or "flag",
-//     return immediately — do nothing. This is the guard that
-//     prevents infinite recursion.
-//
-//  c) Add the CSS class "checked" to the tile.
-//
-//  d) Read the adjacent mine count: Number(tile.dataset.adjacent).
-//
-//  e) If the count is greater than 0:
-//       - Set tile.textContent to the count number.
-//       - Set tile.style.color to NUMBER_COLORS[count - 1].
-//       - Stop here (do not recurse).
-//
-//  f) If the count is 0 (an empty tile):
-//       - Call getNeighbours(idx) and for each neighbour index,
-//         call revealTile(ni) recursively.
-//         The guard in step (b) ensures this terminates correctly.
+function revealTile(idx) {
+  //  a) Get the tile element: state.tiles[idx].
+  //
+  const tile = state.tiles[idx];
+  //  b) If the tile already has the CSS class "checked" or "flag",
+  //     return immediately — do nothing. This is the guard that
+  //     prevents infinite recursion.
+  if (tile.classList.contains("checked") || tile.classList.contains("flag"))
+    return;
+
+  //
+  //  c) Add the CSS class "checked" to the tile.
+  tile.classList.add("checked");
+  //
+  //  d) Read the adjacent mine count: Number(tile.dataset.adjacent).
+  const adjacent = Number(tile.dataset.adjacent);
+  //
+  //  e) If the count is greater than 0:
+  //       - Set tile.textContent to the count number.
+  //       - Set tile.style.color to NUMBER_COLORS[count - 1].
+  //       - Stop here (do not recurse).
+  if (adjacent > 0) {
+    tile.textContent = adjacent;
+    tile.style.color = NUMBER_COLORS[adjacent - 1];
+    //
+    //  f) If the count is 0 (an empty tile):
+    //       - Call getNeighbours(idx) and for each neighbour index,
+    //         call revealTile(ni) recursively.
+    //         The guard in step (b) ensures this terminates correctly.
+  } else {
+    getNeighbours(idx).forEach((ni) => revealTile(ni));
+  }
+}
 
 // ============================================================
 // === STEP 8: Handle Left-Click ===
@@ -359,25 +395,42 @@ function placeMines(safeIdx) {
 //    parameter: idx (number), the index of the clicked tile.
 //
 //  Inside handleLeftClick():
-//
-//  a) If state.isGameOver is true, return immediately.
-//
-//  b) Get the tile: state.tiles[idx].
-//     If the tile has the class "checked" or "flag", return immediately.
-//
-//  c) If state.firstClick is true:
-//       - Set state.firstClick to false.
-//       - Call placeMines(idx) to place the mines now that you know
-//         which tile is safe.
-//       - Call startTimer() (defined in Step 11).
-//
-//  d) If tile.dataset.mine is truthy:
-//       - Call triggerGameOver(idx) (defined in Step 10).
-//
-//  e) Otherwise:
-//       - Call revealTile(idx).
-//       - Call checkForWin() (defined in Step 10).
+function handleLeftClick(idx) {
+  //
+  //  a) If state.isGameOver is true, return immediately.
+  //
+  if (state.isGameOver) return;
 
+  //  b) Get the tile: state.tiles[idx].
+  //     If the tile has the class "checked" or "flag", return immediately.
+  const tile = state.tiles[idx];
+  if (tile.classList.contains("checked") || tile.classList.contains("flag"))
+    return;
+  //
+  //  c) If state.firstClick is true:
+  //       - Set state.firstClick to false.
+  //       - Call placeMines(idx) to place the mines now that you know
+  //         which tile is safe.
+  //       - Call startTimer() (defined in Step 11).
+  if (state.firstClick) {
+    state.firstClick = false;
+    placeMines(idx);
+    startTimer();
+  }
+  //
+  //  d) If tile.dataset.mine is truthy:
+  //       - Call triggerGameOver(idx) (defined in Step 10).
+  if (tile.dataset.mine) {
+    triggerGameOver();
+    //
+    //  e) Otherwise:
+    //       - Call revealTile(idx).
+    //       - Call checkForWin() (defined in Step 10).
+  } else {
+    revealTile(idx);
+    checkForWin();
+  }
+}
 // ============================================================
 // === STEP 9: Handle Right-Click (Flag) ===
 // ============================================================
@@ -398,6 +451,12 @@ function placeMines(safeIdx) {
 //
 //  c) Call a helper function called toggleFlag(idx).
 //
+function handleRightClick(idx) {
+  if (state.isGameOver) return;
+  if (!state.tiles[idx].classList.contains("checked")) {
+    toggleFlag(idx);
+  }
+}
 //  - Create a function called toggleFlag(idx) that takes one
 //    parameter: idx (number).
 //
@@ -418,7 +477,21 @@ function placeMines(safeIdx) {
 //
 //  d) Always update flagsLeftEl.textContent to
 //     state.level.mines - state.flagCount.
+function toggleFlag(idx) {
+  const tile = state.tiles[idx];
 
+  if (tile.classList.contains("flag")) {
+    tile.classList.remove("flag");
+    tile.innerHTML = "";
+    state.flagCount--;
+  } else if (state.flagCount < state.level.mines) {
+    tile.classList.add("flag");
+    tile.innerHTML = FLAG_ICON;
+    state.flagCount++;
+  }
+
+  flagsLeftEl.textContent = state.level.mines - state.flagCount;
+}
 // ============================================================
 // === STEP 10: Detect Win and Loss ===
 // ============================================================
@@ -434,20 +507,35 @@ function placeMines(safeIdx) {
 //    was clicked.
 //
 //  Inside triggerGameOver():
-//
-//  a) Set state.isGameOver to true.
-//  b) Call stopTimer() (defined in Step 11).
-//  c) Add the CSS class "shake" to the element with class "container"
-//     to trigger the shake animation.
-//  d) Loop over state.tiles with forEach(tile, idx):
-//       - If tile.dataset.mine is truthy:
-//           • Set tile.innerHTML to MINE_ICON (the SVG string from the
-//             top of your file — copy it from game.js).
-//           • Remove the CSS class "flag" (in case it was flagged).
-//           • Add the CSS class "checked".
-//           • If idx equals clickedIdx, also add the CSS class "mine-hit"
-//             so that tile is highlighted differently.
-//  e) Use setTimeout() with a 600 ms delay to call showModal(false).
+function triggerGameOver(clickedIdx) {
+  //  a) Set state.isGameOver to true.
+  state.isGameOver = true;
+  //  b) Call stopTimer() (defined in Step 11).
+  stopTimer();
+  //  c) Add the CSS class "shake" to the element with class "container"
+  //     to trigger the shake animation.
+  const container = document.querySelector(".container");
+  container.classList.add("shake");
+
+  //  d) Loop over state.tiles with forEach(tile, idx):
+  //       - If tile.dataset.mine is truthy:
+  //           • Set tile.innerHTML to MINE_ICON (the SVG string from the
+  //             top of your file — copy it from game.js).
+  //           • Remove the CSS class "flag" (in case it was flagged).
+  //           • Add the CSS class "checked".
+  //           • If idx equals clickedIdx, also add the CSS class "mine-hit"
+  //             so that tile is highlighted differently.
+  state.tiles.forEach((tile, idx) => {
+    if (tile.dataset.mine) {
+      tile.innerHTML = MINE_ICON;
+      tile.classList.remove("flag");
+      tile.classList.add("checked");
+      if (idx === clickedIdx) tile.classList.add("mine-hit");
+    }
+  });
+  //  e) Use setTimeout() with a 600 ms delay to call showModal(false).
+  setTimeout(() => showModal(false), 600);
+}
 //
 //  --- Win ---
 //
@@ -461,7 +549,17 @@ function placeMines(safeIdx) {
 //       - Call stopTimer().
 //       - Set state.isGameOver to true.
 //       - Call showModal(true).
-
+function checkForWin() {
+  const { cols, mines } = state.level;
+  const revealed = state.tiles.filter((t) =>
+    t.classList.contains("checked"),
+  ).length;
+  if (revealed === cols * cols - mines) {
+    stopTimer();
+    state.isGameOver = true;
+    showModal(true);
+  }
+}
 // ============================================================
 // === STEP 11: Update the UI — Timer and Modal ===
 // ============================================================
@@ -481,15 +579,35 @@ function placeMines(safeIdx) {
 //            3 digits with leading zeros (cap the displayed value at 999).
 //            Hint: String(n).padStart(3, "0") produces "007" from 7.
 //      • Store the interval ID in state.timerId.
+function startTimer() {
+  if (state.timerId !== null) return;
+  state.timerId = setInterval(() => {
+    state.elapsedSecs++;
+    timerEl.textContent = String(Math.min(state.elapsedSecs, 999)).padStart(
+      3,
+      "0",
+    );
+  }, 1000);
+}
+
 //
 //  - Create a function called stopTimer() that takes no parameters.
 //      • Call clearInterval(state.timerId).
 //      • Set state.timerId to null.
+function stopTimer() {
+  clearInterval(state.timerId);
+  state.timerId = null;
+}
 //
 //  - Create a function called resetTimer() that takes no parameters.
 //      • Call stopTimer().
 //      • Set state.elapsedSecs to 0.
 //      • Set timerEl.textContent to "000".
+function resetTimer() {
+  stopTimer();
+  state.elapsedSecs = 0;
+  timerEl.textContent = "000";
+}
 //
 //  --- Modal function ---
 //
@@ -498,12 +616,19 @@ function placeMines(safeIdx) {
 //
 //  Inside showModal():
 //
-//  a) Set resultIconEl.textContent to "🏆" if isWin, or "💣" if not.
-//  b) Set resultMsgEl.textContent to "YOU WIN!" if isWin, or "GAME OVER".
-//  c) Set timeDisplayEl.textContent to state.elapsedSecs.
-//  d) Set resultTimeEl.style.display to "block" if isWin, or "none" if not.
-//     (This shows the time line only when the player wins.)
-//  e) Add the CSS class "show" to modalEl to make the modal visible.
+function showModal(isWin) {
+  //  a) Set resultIconEl.textContent to "🏆" if isWin, or "💣" if not.
+  //  b) Set resultMsgEl.textContent to "YOU WIN!" if isWin, or "GAME OVER".
+  //  c) Set timeDisplayEl.textContent to state.elapsedSecs.
+  //  d) Set resultTimeEl.style.display to "block" if isWin, or "none" if not.
+  //     (This shows the time line only when the player wins.)
+  //  e) Add the CSS class "show" to modalEl to make the modal visible.
+  resultIconEl.textContent = isWin ? "🏆" : "💣";
+  resultMsgEl.textContent = isWin ? "YOU WIN!" : "GAME OVER";
+  timeDisplayEl.textContent = state.elapsedSecs;
+  resultTimeEl.style.display = isWin ? "block" : "none";
+  modalEl.classList.add("show");
+}
 
 // ============================================================
 // === STEP 12: New Game and Difficulty Dropdown ===
@@ -529,9 +654,25 @@ function placeMines(safeIdx) {
 //  e) Set flagsLeftEl.textContent to state.level.mines.
 //  f) Call buildGrid() to rebuild the grid from scratch.
 //
+function newGame() {
+  modalEl.classList.remove("show");
+  resetTimer();
+
+  state.flagCount = 0;
+  state.isGameOver = false;
+  state.firstClick = true;
+
+  const container = document.querySelector(".container");
+  container.classList.remove("shake");
+
+  flagsLeftEl.textContent = state.level.mines;
+
+  buildGrid();
+}
 //  - Attach newGame as the click listener for two elements:
 //      • The <button> with id "new-game" (inside the modal).
 //      • The <svg> with id "refresh" (the restart icon in the header).
+
 //
 //  --- Difficulty dropdown ---
 //
@@ -543,13 +684,23 @@ function placeMines(safeIdx) {
 //      • dropdownOptions — all <div> elements with class "option"
 //                          (one per difficulty level)
 //
+const dropdownTitle = document.querySelector(".dropdown .title");
+const dropdownMenu = document.querySelector(".dropdown .menu");
+const dropdownOptions = document.querySelectorAll(".dropdown .option");
+
 //  - Add a click listener on dropdownTitle that toggles the class
 //    "show" on dropdownMenu (opens/closes the menu).
+dropdownTitle.addEventListener("click", () =>
+  dropdownMenu.classList.toggle("show"),
+);
 //
 //  - Add a click listener on the whole document that removes the
 //    class "show" from dropdownMenu whenever the click target is
 //    NOT inside an element with class "dropdown".
 //    Use e.target.closest(".dropdown") to check this.
+document.addEventListener("click", (e) => {
+  if (!e.target.closest(".dropdown")) dropdownMenu.classList.remove("show");
+});
 //
 //  - Loop over dropdownOptions and for each option add a click listener:
 //      • Find the matching level in LEVELS where level.name equals
@@ -558,7 +709,23 @@ function placeMines(safeIdx) {
 //        dropdownTitle.textContent to chosen.name.
 //      • Remove the class "show" from dropdownMenu.
 //      • Call newGame().
+dropdownOptions.forEach((option) => {
+  option.addEventListener("click", () => {
+    const chosen = LEVELS.find((l) => l.name === option.textContent.trim());
+    if (chosen) {
+      state.level = chosen;
+      dropdownTitle.textContent = chosen.name;
+    }
+    dropdownMenu.classList.remove("show");
+    newGame();
+  });
+});
 
+document.querySelector("#new-game").addEventListener("click", newGame);
+document.querySelector("#refresh").addEventListener("click", newGame);
+
+buildGrid();
+flagsLeftEl.textContent = state.level.mines;
 // ============================================================
 //  FINAL REMINDER — You've got this!
 // ============================================================
@@ -579,4 +746,3 @@ function placeMines(safeIdx) {
 //      to break styles and logic.
 //
 //  Good luck, and have fun building Minesweeper!
-buildGrid();
