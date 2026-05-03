@@ -14,6 +14,8 @@
 
 .banner {
   width: 100%;
+}
+.banner-container {
   display: flex;
   align-items: center;
   gap: 5rem;
@@ -30,6 +32,12 @@
   transform: rotateZ(-3deg);
 }
 
+#banner-1 .banner-container {
+  animation: tape-loop 15s linear infinite;
+}
+#banner-2 .banner-container {
+  animation: tape-loop 15s linear infinite reverse;
+}
 #banner-1 img {
   filter: invert(1);
 }
@@ -41,4 +49,14 @@
   position: absolute;
   top: 0;
   left: 0;
+}
+
+/* animation */
+@keyframes tape-loop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
