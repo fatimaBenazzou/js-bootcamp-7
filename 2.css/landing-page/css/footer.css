@@ -25,13 +25,13 @@ footer li:hover {
 
 footer .links,
 footer .social,
-.container > div {
+footer .container > div {
   display: flex;
   align-items: center;
 
   gap: 2rem;
 }
-.container > div {
+footer .container > div {
   justify-content: space-between;
   flex-grow: 1;
 }

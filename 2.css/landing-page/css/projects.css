@@ -121,3 +121,30 @@
 .project-container .card .circle span {
   color: inherit;
 }
+
+.project-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.project-dots .dot {
+  width: 2rem;
+  height: 0.5rem;
+  background-color: var(--primary-color-hover);
+  border-radius: 8px;
+  cursor: pointer;
+  transition:
+    width 300ms ease-in-out,
+    background-color 300ms ease-in-out;
+}
+
+.project-dots .dot:hover {
+  width: 3rem;
+}
+
+.project-dots .dot.dot--selected {
+  width: 4rem;
+  background-color: var(--primary-color);
+}

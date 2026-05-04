@@ -94,3 +94,12 @@
     gap: 1rem;
   }
 }
+
+.tab-pane {
+  display: none;
+  width: 100%;
+}
+
+.tab-pane.active {
+  display: block;
+}

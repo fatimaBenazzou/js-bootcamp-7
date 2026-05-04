@@ -6,7 +6,7 @@
 }
 
 .services-grid {
-  width: 100%;
+  /* width: 100%; */
   display: grid;
   grid-template-columns: repeat(3, minmax(360px, 1fr));
   gap: 3rem;
@@ -52,13 +52,13 @@
 }
 
 @media screen and (max-width: 1200px) {
-  #services ul {
+  #services .services-grid {
     grid-template-columns: repeat(2, minmax(360px, 1fr));
   }
 }
 
 @media screen and (max-width: 768px) {
-  #services ul {
+  #services .services-grid {
     grid-template-columns: 1fr;
   }
 }
