@@ -1,8 +1,12 @@
 import "./style.css";
 
-export default function PaletteCard({ from, to }) {
+export default function PaletteCard({ from, to, onClick }) {
+  const handleClick = () => {
+    onClick({ from: from, to: to });
+  };
+
   return (
-    <li className="palette">
+    <li className="palette" onClick={handleClick}>
       {/* gradient */}
       <div
         className="palette-gradient"

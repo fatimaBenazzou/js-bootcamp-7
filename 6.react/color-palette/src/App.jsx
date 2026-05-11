@@ -1,5 +1,5 @@
-import Counter from "./components/Counter";
 import PaletteList from "./components/PaletteList";
+import { useState } from "react";
 
 const palettes = [
   {
@@ -77,12 +77,22 @@ const palettes = [
 ];
 
 export default function App() {
+  const [selectedColor, setSelectedColor] = useState(null);
+
+  console.log(selectedColor);
   return (
-    <main>
-      <Counter />
+    <main
+      style={
+        selectedColor
+          ? {
+              background: `linear-gradient(135deg, ${selectedColor.from}, ${selectedColor.to})`,
+            }
+          : undefined
+      }
+    >
       <h1>Color Palettes</h1>
       {/* palette grid */}
-      <PaletteList palettes={palettes} />
+      <PaletteList palettes={palettes} onClick={setSelectedColor} />
     </main>
   );
 }
